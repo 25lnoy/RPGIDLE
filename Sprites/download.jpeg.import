@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db5r862s7qpp7"
-path="res://.godot/imported/coal.jpeg-01988df61bfd1956a908c0c844f715ec.ctex"
+uid="uid://siyfwn3fy7sa"
+path="res://.godot/imported/download.jpeg-c5b288f60b4e4689ad72fe10c22e268c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/coal.jpeg"
-dest_files=["res://.godot/imported/coal.jpeg-01988df61bfd1956a908c0c844f715ec.ctex"]
+source_file="res://Sprites/download.jpeg"
+dest_files=["res://.godot/imported/download.jpeg-c5b288f60b4e4689ad72fe10c22e268c.ctex"]
 
 [params]
 

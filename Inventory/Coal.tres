@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dhr6xlovsjgli"]
+
+[ext_resource type="Texture2D" uid="uid://db5r862s7qpp7" path="res://Sprites/coal.jpeg" id="1_2qykh"]
+[ext_resource type="Script" uid="uid://bes2jqqm4suyu" path="res://ItemData.gd" id="2_237m2"]
+
+[resource]
+script = ExtResource("2_237m2")
+item_item = "Coal"
+item_texture = ExtResource("1_2qykh")
+item_amount = 1
+metadata/_custom_type_script = "uid://bes2jqqm4suyu"

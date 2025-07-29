@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://8umpvtgdwv10"]
 
-[ext_resource type="Texture2D" uid="uid://brg1r0wve3hem" path="res://addons/tree.webp" id="1_6lon5"]
+[ext_resource type="Texture2D" uid="uid://brg1r0wve3hem" path="res://Sprites/tree.webp" id="1_6lon5"]
 [ext_resource type="Script" uid="uid://d28wcffekglcy" path="res://main.gd" id="1_q8o8l"]
-[ext_resource type="Texture2D" uid="uid://siyfwn3fy7sa" path="res://addons/download.jpeg" id="4_cor1f"]
-[ext_resource type="Texture2D" uid="uid://db5r862s7qpp7" path="res://addons/coal.jpeg" id="4_u77ya"]
+[ext_resource type="Texture2D" uid="uid://siyfwn3fy7sa" path="res://Sprites/download.jpeg" id="4_cor1f"]
+[ext_resource type="Texture2D" uid="uid://db5r862s7qpp7" path="res://Sprites/coal.jpeg" id="4_u77ya"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8o8l"]
 bg_color = Color(0.353438, 0.353438, 0.353438, 1)
@@ -64,6 +64,7 @@ offset_bottom = 81.0
 text = "Inventory"
 
 [node name="wood_tab" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 206.0
 offset_right = 1152.0
@@ -233,6 +234,13 @@ max_value = 5.0
 [node name="Crafting_tab" type="Panel" parent="."]
 visible = false
 layout_mode = 2
+offset_left = 206.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryTab" type="Panel" parent="CanvasLayer"]
 offset_left = 206.0
 offset_right = 1152.0
 offset_bottom = 648.0
