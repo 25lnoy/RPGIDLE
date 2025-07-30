@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dh3umph2ulxok"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://kcxdnmbi1ral"]
 
-[ext_resource type="Texture2D" uid="uid://siyfwn3fy7sa" path="res://Sprites/download.jpeg" id="1_h3va6"]
-[ext_resource type="Script" uid="uid://bes2jqqm4suyu" path="res://ItemData.gd" id="2_xdoi4"]
+[ext_resource type="Texture2D" uid="uid://siyfwn3fy7sa" path="res://Sprites/download.jpeg" id="1_vdql2"]
+[ext_resource type="Script" uid="uid://cj0ui8rtwyt1j" path="res://ItemData.gd" id="2_xk5hq"]
 
 [resource]
-script = ExtResource("2_xdoi4")
-item_item = "Wood"
-item_texture = ExtResource("1_h3va6")
+script = ExtResource("2_xk5hq")
+item_name = "Wood"
+item_texture = ExtResource("1_vdql2")
 item_amount = 1
-metadata/_custom_type_script = "uid://bes2jqqm4suyu"
+metadata/_custom_type_script = "uid://cj0ui8rtwyt1j"

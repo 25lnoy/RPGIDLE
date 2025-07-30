@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdt86t2llv7gc"]
+
+[ext_resource type="Script" uid="uid://76egmlaeo3le" path="res://Inventory/inventory_window.gd" id="1_crlts"]
+[ext_resource type="Resource" uid="uid://s2rsd7vq0rdk" path="res://Inventory/TestInventory.tres" id="2_v6bil"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6bil"]
+bg_color = Color(0.43712, 0.43712, 0.43712, 1)
+
+[node name="InventoryWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_crlts")
+inventory_data = ExtResource("2_v6bil")
+
+[node name="Inventory" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.476562
+anchor_top = 0.49537
+anchor_right = 0.524306
+anchor_bottom = 0.506173
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6bil")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+
+[node name="SlotGroup" type="GridContainer" parent="Inventory/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 9

@@ -14,16 +14,26 @@ func _on_woodtab_pressed() -> void:
 	get_node("wood_tab").visible = true
 	get_node("mines_tab").visible = false
 	get_node("Crafting_tab").visible = false
+	get_node("Inventory_tab").visible = false
 
 func _on_minetab_pressed() -> void:
 	get_node("mines_tab").visible = true
 	get_node("wood_tab").visible = false
 	get_node("Crafting_tab").visible = false
+	get_node("Inventory_tab").visible = false
 
 func _on_craftingtab_pressed() -> void:
 	get_node("Crafting_tab").visible = true
 	get_node("wood_tab").visible = false
 	get_node("mines_tab").visible = false
+	get_node("Inventory_tab").visible = false
+	
+func _on_inventory_pressed() -> void:
+	get_node("Crafting_tab").visible = false
+	get_node("wood_tab").visible = false
+	get_node("mines_tab").visible = false
+	get_node("Inventory_tab").visible = true
+
 #Happens constantly from startup
 func _process(delta):
 	get_node("wood_tab/wood_panel/wood_amount").text = str(wood)
@@ -34,16 +44,15 @@ func _process(delta):
 	%wood_progress.value = %wood_timer.time_left
 #starts the timer when the button is pressed
 func _on_wood_button_pressed() -> void:
-	%wood_timer.stop()
 	if %wood_timer.is_stopped():
+		# Start chopping
 		%wood_timer.start(5)
-#changes the text of the button
 		%wood_button.text = "Cancel Chopping"
 	else:
-#resets the progress barr and stops the timer
+		# Cancel chopping
 		%wood_timer.stop()
 		%wood_progress.value = 0
-		%wood_button.text = "start Chopping"
+		%wood_button.text = "Start Chopping"
 		%wood_button.disabled = false
 #when the timer ends adds 1 wood to the var
 func _on_wood_timer_timeout() -> void:
@@ -60,7 +69,7 @@ func _on_coal_button_pressed() -> void:
 		%coal_timer.stop()
 		%coal_progress.value = 0
 		get_node("mines_tab/coal_panel/coal_button").text = "Mine Coal"
-		get_node("mines_tab/coal_panel/coal_button").disabled = false  # Optional, just in case
+		get_node("mines_tab/coal_panel/coal_button").disabled = false 
 
 func _on_coal_timer_timeout() -> void:
 	coal += 1
