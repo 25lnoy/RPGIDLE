@@ -16,56 +16,73 @@ func _ready():
 
 #Changes the tab to the selected button
 func _on_woodtab_pressed() -> void:
-	%WoodTab.visible = true
-	%MineTab.visible = false
-	%CraftingTab.visible = false
-	%InventoryTab.visible = false
-	%MasteryTab.visible = false
-	%ArenaTab.visible = false
+	if %WoodTab.is_visible_in_tree():
+		%WoodTab.visible = false
+	else:
+		%WoodTab.visible = true
+		%MineTab.visible = false
+		%CraftingTab.visible = false
+		%InventoryTab.visible = false
+		%MasteryTab.visible = false
+		%ArenaTab.visible = false
 
 func _on_minetab_pressed() -> void:
-	%MineTab.visible = true
-	%WoodTab.visible = false
-	%CraftingTab.visible = false
-	%InventoryTab.visible = false
-	%MasteryTab.visible = false
-	%ArenaTab.visible = false
+	if %MineTab.is_visible_in_tree():
+		%MineTab.visible = false
+	else:
+		%MineTab.visible = true
+		%WoodTab.visible = false
+		%CraftingTab.visible = false
+		%InventoryTab.visible = false
+		%MasteryTab.visible = false
+		%ArenaTab.visible = false
 
 func _on_craftingtab_pressed() -> void:
-	%MineTab.visible = false
-	%WoodTab.visible = false
-	%CraftingTab.visible = true
-	%InventoryTab.visible = false
-	%MasteryTab.visible = false
-	%ArenaTab.visible = false
+	if %CraftingTab.is_visible_in_tree():
+		%CraftingTab.visible = false
+	else:
+		%MineTab.visible = false
+		%WoodTab.visible = false
+		%CraftingTab.visible = true
+		%InventoryTab.visible = false
+		%MasteryTab.visible = false
+		%ArenaTab.visible = false
 	
 func _on_inventory_pressed() -> void:
-	%MineTab.visible = false
-	%WoodTab.visible = false
-	%CraftingTab.visible = false
-	%InventoryTab.visible = true
-	%MasteryTab.visible = false
-	%ArenaTab.visible = false
+	if %InventoryTab.is_visible_in_tree():
+		%InventoryTab.visible = false
+	else:
+		%MineTab.visible = false
+		%WoodTab.visible = false
+		%CraftingTab.visible = false
+		%InventoryTab.visible = true
+		%MasteryTab.visible = false
+		%ArenaTab.visible = false
 
 func _on_MasteryTab_pressed() -> void:
-	%MineTab.visible = false
-	%WoodTab.visible = false
-	%CraftingTab.visible = false
-	%InventoryTab.visible = false
-	%MasteryTab.visible = true
-	%ArenaTab.visible = false
+	if %MasteryTab.is_visible_in_tree():
+		%MasteryTab.visible = false
+	else:
+		%MineTab.visible = false
+		%WoodTab.visible = false
+		%CraftingTab.visible = false
+		%InventoryTab.visible = false
+		%MasteryTab.visible = true
+		%ArenaTab.visible = false
 
 func _on_arena_pressed() -> void:
-	%MineTab.visible = false
-	%WoodTab.visible = false
-	%CraftingTab.visible = false
-	%InventoryTab.visible = false
-	%MasteryTab.visible = false
-	%ArenaTab.visible = true
+	if %ArenaTab.is_visible_in_tree():
+		%ArenaTab.visible = false
+	else:
+		%MineTab.visible = false
+		%WoodTab.visible = false
+		%CraftingTab.visible = false
+		%InventoryTab.visible = false
+		%MasteryTab.visible = false
+		%ArenaTab.visible = true
 
 #Happens constantly from startup
 func _process(delta):
-	userexp += 3
 	if %LevelProgressBar.value >= %LevelProgressBar.max_value:
 		Level()
 	%level.text = str(userlevel)
@@ -127,9 +144,14 @@ func Level() -> void:
 	userexp = 0
 	userlevel += 1
 
+
+
 func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+	%SaveandQuit.visible = true
+
+func _on_yes_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 
-func _on_button_pressed() -> void:
-	userexp += 3
+func _on_no_button_pressed() -> void:
+	%SaveandQuit.visible = false

@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw38fcob2reag"]
+
+[ext_resource type="Script" uid="uid://bjl18xau0xmk6" path="res://scenes/main_menu.gd" id="1_0ykhv"]
+[ext_resource type="Texture2D" uid="uid://dt0bve1ioeup5" path="res://Sprites/fantasy-endless-hole-landscape.jpg" id="1_yqorp"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ykhv")
+
+[node name="MainMenuScreen" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yqorp")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MainMenuSets" type="VBoxContainer" parent="MainMenuScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -227.0
+offset_right = 250.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MainMenuScreen/MainMenuSets"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 41
+text = "World of Idle"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuScreen/MainMenuSets"]
+custom_minimum_size = Vector2(300, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuScreen/MainMenuSets/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PlayButton" type="Button" parent="MainMenuScreen/MainMenuSets/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Play"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenuScreen/MainMenuSets/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="OptionsButton" type="Button" parent="MainMenuScreen/MainMenuSets/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Options"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MainMenuScreen/MainMenuSets/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="MainMenuScreen/MainMenuSets/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Quit to Destop"
+
+[node name="OptionsContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(700, 400)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.257
+anchor_top = 0.228
+anchor_right = 0.743
+anchor_bottom = 0.772
+offset_left = -0.0639954
+offset_top = 0.255997
+offset_right = 0.0639648
+offset_bottom = -0.256012
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Audio" type="VBoxContainer" parent="OptionsContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="BackOptions" type="Button" parent="OptionsContainer/Audio"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[connection signal="pressed" from="MainMenuScreen/MainMenuSets/VBoxContainer/MarginContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuScreen/MainMenuSets/VBoxContainer/MarginContainer2/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenuScreen/MainMenuSets/VBoxContainer/MarginContainer3/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OptionsContainer/Audio/BackOptions" to="." method="_on_back_options_pressed"]
