@@ -16,6 +16,8 @@ func connect_signals() -> void:
 	GlobalSignals.connect("UpdateInventory", update_inventory_data)
 
 func update_inventory_data() -> void:
+	if inventory_data == null:
+		return
 	for slot in %SlotGroup.get_children():
 		slot.queue_free()
 	
@@ -23,3 +25,4 @@ func update_inventory_data() -> void:
 		var new_slot = preload("res://Inventory/Slot.tscn").instantiate()
 		new_slot.current_item = item_data
 		%SlotGroup.add_child(new_slot)
+		

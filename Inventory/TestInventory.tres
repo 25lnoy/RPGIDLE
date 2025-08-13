@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="InventoryData" load_steps=6 format=3 uid="uid://s2rsd7vq0rdk"]
 
 [ext_resource type="Script" uid="uid://cj0ui8rtwyt1j" path="res://ItemData.gd" id="1_qtp1f"]
-[ext_resource type="Resource" uid="uid://cnueoti7l63r0" path="res://Inventory/Coal.tres" id="2_nwueo"]
-[ext_resource type="Resource" uid="uid://deqqmunfg142k" path="res://Inventory/Stone.tres" id="3_lm4me"]
-[ext_resource type="Resource" uid="uid://kcxdnmbi1ral" path="res://Inventory/Wood.tres" id="4_8mn72"]
+[ext_resource type="Resource" uid="uid://cnueoti7l63r0" path="res://Inventory/Coal.tres" id="2_qtp1f"]
+[ext_resource type="Resource" uid="uid://deqqmunfg142k" path="res://Inventory/Stone.tres" id="3_nwueo"]
+[ext_resource type="Resource" uid="uid://fqkwexn426os" path="res://Inventory/Wood.tres" id="4_lm4me"]
 [ext_resource type="Script" uid="uid://d33s1411utlaw" path="res://InventoryData.gd" id="5_t8hud"]
 
 [resource]
 script = ExtResource("5_t8hud")
-item_data = Array[ExtResource("1_qtp1f")]([ExtResource("2_nwueo"), ExtResource("3_lm4me"), ExtResource("4_8mn72"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
-metadata/_custom_type_script = "uid://d33s1411utlaw"
+item_data = Array[ExtResource("1_qtp1f")]([ExtResource("2_qtp1f"), ExtResource("3_nwueo"), ExtResource("4_lm4me")])

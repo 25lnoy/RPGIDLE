@@ -7,5 +7,5 @@
 script = ExtResource("2_237m2")
 item_name = "Coal"
 item_texture = ExtResource("1_2qykh")
-item_amount = 1
+item_amount = 0
 metadata/_custom_type_script = "uid://cj0ui8rtwyt1j"

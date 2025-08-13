@@ -1,28 +1,38 @@
-[gd_scene load_steps=11 format=3 uid="uid://8umpvtgdwv10"]
+[gd_scene load_steps=15 format=3 uid="uid://8umpvtgdwv10"]
 
 [ext_resource type="Texture2D" uid="uid://brg1r0wve3hem" path="res://Sprites/tree.webp" id="1_6lon5"]
 [ext_resource type="Script" uid="uid://d28wcffekglcy" path="res://main.gd" id="1_q8o8l"]
-[ext_resource type="Texture2D" uid="uid://siyfwn3fy7sa" path="res://Sprites/download.jpeg" id="4_cor1f"]
-[ext_resource type="Texture2D" uid="uid://db5r862s7qpp7" path="res://Sprites/coal.jpeg" id="4_u77ya"]
+[ext_resource type="Texture2D" uid="uid://dl1oldgwcx8q0" path="res://Sprites/download (1).jpeg" id="3_u77ya"]
 [ext_resource type="PackedScene" uid="uid://cdt86t2llv7gc" path="res://Inventory/InventoryWindow.tscn" id="5_u77ya"]
+[ext_resource type="Texture2D" uid="uid://dgxoxtlcshl0h" path="res://Sprites/images.jpeg" id="6_jf511"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8o8l"]
 bg_color = Color(0.353438, 0.353438, 0.353438, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cor1f"]
-bg_color = Color(0.386749, 0.255421, 0.145922, 1)
+bg_color = Color(0.740818, 0.518361, 0.368846, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u77ya"]
+bg_color = Color(0.548947, 0.364773, 0.222666, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf511"]
-bg_color = Color(0.76908, 0.539585, 0.42123, 1)
+bg_color = Color(0.658965, 0.606037, 0.576766, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wv8u"]
-bg_color = Color(0.408329, 0.408329, 0.408329, 1)
+bg_color = Color(0.41598, 0.41598, 0.41598, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u77ya"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u6ry"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67jta"]
+bg_color = Color(0.666568, 0.666569, 0.666568, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8208"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axmix"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -35,56 +45,81 @@ script = ExtResource("1_q8o8l")
 
 [node name="tabs" type="Panel" parent="."]
 layout_mode = 2
-offset_right = 206.0
+offset_top = 40.0
+offset_right = 192.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q8o8l")
 
 [node name="Woodtab" type="Button" parent="tabs"]
 layout_mode = 0
-offset_top = 90.0
-offset_right = 206.0
-offset_bottom = 121.0
+offset_top = 85.0
+offset_right = 192.0
+offset_bottom = 116.0
 text = "Forest"
 
 [node name="Minetab" type="Button" parent="tabs"]
 layout_mode = 0
-offset_top = 130.0
-offset_right = 206.0
-offset_bottom = 161.0
+offset_top = 125.0
+offset_right = 192.0
+offset_bottom = 156.0
 text = "Mines"
 
 [node name="Craftingtab" type="Button" parent="tabs"]
 layout_mode = 0
-offset_top = 169.0
-offset_right = 206.0
-offset_bottom = 200.0
+offset_top = 165.0
+offset_right = 192.0
+offset_bottom = 196.0
 text = "Crafting"
 
-[node name="Inventory" type="Button" parent="tabs"]
+[node name="InventoryTab" type="Button" parent="tabs"]
 layout_mode = 0
-offset_top = 50.0
-offset_right = 206.0
-offset_bottom = 81.0
+offset_top = 44.0
+offset_right = 192.0
+offset_bottom = 75.0
 text = "Inventory"
 
-[node name="wood_tab" type="Panel" parent="."]
+[node name="MasteryTab" type="Button" parent="tabs"]
+layout_mode = 0
+offset_top = 205.0
+offset_right = 192.0
+offset_bottom = 236.0
+text = "Mastery's"
+
+[node name="ArenaTab" type="Button" parent="tabs"]
+layout_mode = 0
+offset_top = 244.0
+offset_right = 192.0
+offset_bottom = 275.0
+text = "Arena"
+
+[node name="QuitButton" type="Button" parent="tabs"]
+layout_mode = 0
+offset_top = 500.0
+offset_right = 192.0
+offset_bottom = 531.0
+text = "Save & Quit"
+
+[node name="WoodTab" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(945, 647)
 layout_mode = 2
-offset_left = 203.0
-offset_right = 1148.0
-offset_bottom = 647.0
+offset_left = 192.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
 
-[node name="wood_panel" type="Panel" parent="wood_tab"]
+[node name="wood_panel" type="Panel" parent="WoodTab"]
 custom_minimum_size = Vector2(380, 250)
 layout_mode = 1
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 400.0
-offset_bottom = 220.0
+offset_left = 16.0
+offset_top = 63.0
+offset_right = 396.0
+offset_bottom = 313.0
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_cor1f")
 
-[node name="Panel" type="Panel" parent="wood_tab/wood_panel"]
+[node name="Panel" type="Panel" parent="WoodTab/wood_panel"]
 custom_minimum_size = Vector2(300, 70)
 layout_mode = 1
 anchors_preset = 7
@@ -98,36 +133,55 @@ offset_right = 150.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_jf511")
+theme_override_styles/panel = SubResource("StyleBoxFlat_u77ya")
 
-[node name="Label" type="Label" parent="wood_tab/wood_panel/Panel"]
-custom_minimum_size = Vector2(90, 0)
+[node name="Panel" type="Panel" parent="WoodTab/wood_panel/Panel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -12.0
-offset_bottom = 11.0
+offset_left = -110.0
+offset_top = -20.0
+offset_right = -9.0
+offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
-text = "0"
-horizontal_alignment = 2
 
-[node name="Button" type="Button" parent="wood_tab/wood_panel/Panel"]
+[node name="TempWoodStorageLabel" type="Label" parent="WoodTab/wood_panel/Panel/Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -11.5
+offset_right = 45.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WoodCollectResourceButton" type="Button" parent="WoodTab/wood_panel/Panel"]
 custom_minimum_size = Vector2(180, 30)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
-offset_right = 180.0
+offset_left = 5.0
+offset_top = -37.0
+offset_right = 185.0
+offset_bottom = -6.0
 grow_vertical = 0
 text = "Collect Resources "
 
-[node name="Label2" type="Label" parent="wood_tab/wood_panel/Panel"]
+[node name="Label2" type="Label" parent="WoodTab/wood_panel/Panel"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 0
 offset_left = -1.0
@@ -136,7 +190,7 @@ offset_bottom = 23.0
 text = "Temp Storage"
 horizontal_alignment = 1
 
-[node name="wood_image" type="TextureRect" parent="wood_tab/wood_panel"]
+[node name="wood_image" type="TextureRect" parent="WoodTab/wood_panel"]
 layout_mode = 0
 offset_left = 202.0
 offset_top = 11.0
@@ -145,151 +199,229 @@ offset_bottom = 148.0
 texture = ExtResource("1_6lon5")
 expand_mode = 1
 
-[node name="wood_button" type="Button" parent="wood_tab/wood_panel"]
+[node name="wood_button" type="Button" parent="WoodTab/wood_panel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 12.0
-offset_top = 117.0
-offset_right = 190.0
-offset_bottom = 148.0
+offset_left = 11.0
+offset_top = 85.0
+offset_right = 189.0
+offset_bottom = 116.0
 action_mode = 0
 text = "Start Chopping"
 
-[node name="wood_amount" type="Label" parent="wood_tab/wood_panel"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 21.0
-offset_right = 176.0
-offset_bottom = 74.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="wood_progress" type="ProgressBar" parent="wood_tab/wood_panel"]
+[node name="wood_progress" type="ProgressBar" parent="WoodTab/wood_panel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 7.0
-offset_top = 85.0
-offset_right = 198.0
-offset_bottom = 112.0
+offset_left = 2.0
+offset_top = 43.0
+offset_right = 193.0
+offset_bottom = 70.0
 max_value = 5.0
 
-[node name="wood_timer" type="Timer" parent="wood_tab/wood_panel"]
+[node name="wood_timer" type="Timer" parent="WoodTab/wood_panel"]
 unique_name_in_owner = true
 
-[node name="mines_tab" type="Panel" parent="."]
+[node name="MineTab" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
-offset_left = 206.0
+offset_left = 192.0
+offset_top = 44.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="coal_panel" type="Panel" parent="mines_tab"]
+[node name="StonePanel" type="Panel" parent="MineTab"]
+custom_minimum_size = Vector2(380, 250)
 layout_mode = 0
-offset_left = 565.0
-offset_top = 67.0
-offset_right = 928.0
-offset_bottom = 205.0
+offset_left = 42.0
+offset_top = 52.0
+offset_right = 422.0
+offset_bottom = 302.0
+size_flags_horizontal = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_jf511")
+
+[node name="TempStoragePanel" type="Panel" parent="MineTab/StonePanel"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -85.0
+offset_right = 150.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0wv8u")
 
-[node name="coal_image" type="TextureRect" parent="mines_tab/coal_panel"]
+[node name="LabelPanel" type="Panel" parent="MineTab/StonePanel/TempStoragePanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -20.0
+offset_right = -9.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TempStoneStorageLabel" type="Label" parent="MineTab/StonePanel/TempStoragePanel/LabelPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -11.5
+offset_right = 45.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StoneCollectResourceButton" type="Button" parent="MineTab/StonePanel/TempStoragePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -37.0
+offset_right = 185.0
+offset_bottom = -6.0
+grow_vertical = 0
+text = "Collect Resources "
+
+[node name="Label2" type="Label" parent="MineTab/StonePanel/TempStoragePanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 0
+offset_left = -1.0
+offset_right = 179.0
+offset_bottom = 23.0
+text = "Temp Storage"
+horizontal_alignment = 1
+
+[node name="Stoneimage" type="TextureRect" parent="MineTab/StonePanel"]
 layout_mode = 0
 offset_left = 202.0
-offset_top = 10.0
-offset_right = 352.0
-offset_bottom = 122.0
-texture = ExtResource("4_u77ya")
-expand_mode = 1
-
-[node name="coal_button" type="Button" parent="mines_tab/coal_panel"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 98.0
-offset_right = 178.0
-offset_bottom = 121.0
-text = "Click for coal"
-
-[node name="coal_amount" type="Label" parent="mines_tab/coal_panel"]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 18.0
-offset_right = 162.0
-offset_bottom = 58.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="coal_progress" type="ProgressBar" parent="mines_tab/coal_panel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0110193
-anchor_top = 0.00724638
-anchor_right = 0.0110193
-anchor_bottom = 0.00724638
-offset_left = 8.0
-offset_top = 62.0
-offset_right = 182.0
-offset_bottom = 89.0
-max_value = 5.0
-
-[node name="coal_timer" type="Timer" parent="mines_tab/coal_panel"]
-unique_name_in_owner = true
-wait_time = 5.0
-ignore_time_scale = true
-
-[node name="stone_panel" type="Panel" parent="mines_tab"]
-layout_mode = 0
-offset_left = 77.0
-offset_top = 82.0
-offset_right = 455.0
-offset_bottom = 216.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_u77ya")
-
-[node name="stone_image" type="TextureRect" parent="mines_tab/stone_panel"]
-layout_mode = 0
-offset_left = 211.0
-offset_top = 16.0
-offset_right = 359.0
-offset_bottom = 119.0
-texture = ExtResource("4_cor1f")
-expand_mode = 1
-
-[node name="stone_button" type="Button" parent="mines_tab/stone_panel"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 89.0
-offset_right = 186.0
-offset_bottom = 117.0
-text = "Click for stone"
-
-[node name="stone_amount" type="Label" parent="mines_tab/stone_panel"]
-layout_mode = 0
-offset_left = 52.0
 offset_top = 11.0
-offset_right = 139.0
-offset_bottom = 42.0
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_right = 370.0
+offset_bottom = 148.0
+texture = ExtResource("3_u77ya")
+expand_mode = 1
 
-[node name="stone_timer" type="Timer" parent="mines_tab/stone_panel"]
-unique_name_in_owner = true
-
-[node name="stone_progress" type="ProgressBar" parent="mines_tab/stone_panel"]
+[node name="Stone_button" type="Button" parent="MineTab/StonePanel"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 25.0
-offset_top = 46.0
-offset_right = 181.0
-offset_bottom = 73.0
+offset_left = 11.0
+offset_top = 85.0
+offset_right = 189.0
+offset_bottom = 116.0
+action_mode = 0
+text = "Start Mining"
+
+[node name="Stone_progress" type="ProgressBar" parent="MineTab/StonePanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 43.0
+offset_right = 193.0
+offset_bottom = 70.0
 max_value = 5.0
 
-[node name="Crafting_tab" type="Panel" parent="."]
-visible = false
+[node name="Stone_timer" type="Timer" parent="MineTab/StonePanel"]
+unique_name_in_owner = true
+
+[node name="CraftingTab" type="Panel" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
-offset_left = 206.0
+offset_left = 192.0
+offset_top = 40.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="Inventory_tab" type="Panel" parent="."]
+[node name="CraftingtablePanel" type="Panel" parent="CraftingTab"]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 960.0
+offset_bottom = 608.0
+
+[node name="ItemTooltip" type="Panel" parent="CraftingTab/CraftingtablePanel"]
+custom_minimum_size = Vector2(180, 450)
+layout_mode = 2
+anchor_left = 0.033
+anchor_top = 0.197
+anchor_right = 0.221
+anchor_bottom = 0.934
+offset_left = 0.32
+offset_top = -83.288
+offset_right = -0.160019
+offset_bottom = -4.73602
+theme_override_styles/panel = SubResource("StyleBoxFlat_7u6ry")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CraftingTab/CraftingtablePanel/ItemTooltip"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 140.0
+grow_horizontal = 2
+
+[node name="GridContainer" type="GridContainer" parent="CraftingTab/CraftingtablePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.258333
+anchor_top = 0.063746
+anchor_right = 0.95
+anchor_bottom = 0.840678
+offset_top = -0.128
+offset_right = -6.10352e-05
+offset_bottom = 3.29852
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CraftingTab"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.331
+anchor_top = 0.099
+anchor_right = 0.669
+anchor_bottom = 0.164
+offset_left = 0.23996
+offset_top = -20.192
+offset_right = -0.240051
+offset_bottom = -19.712
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CraftingTableButton" type="Button" parent="CraftingTab/ButtonContainer"]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+text = "Crafting Table"
+
+[node name="FurnaceButton" type="Button" parent="CraftingTab/ButtonContainer"]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+text = "Furnace"
+
+[node name="InventoryTab" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(946, 648)
 layout_mode = 1
@@ -304,7 +436,8 @@ offset_bottom = 323.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="InventoryWindow" parent="Inventory_tab" instance=ExtResource("5_u77ya")]
+[node name="InventoryWindow" parent="InventoryTab" instance=ExtResource("5_u77ya")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(946, 647)
 layout_mode = 1
 anchors_preset = 6
@@ -315,12 +448,156 @@ offset_left = -946.0
 offset_top = -321.0
 offset_bottom = 326.0
 grow_horizontal = 0
+metadata/stonedata = ""
+
+[node name="TopBar" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_67jta")
+
+[node name="LevelProgressBar" type="ProgressBar" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 584.0
+offset_top = 8.0
+offset_right = 1014.0
+offset_bottom = 35.0
+max_value = 10.0
+
+[node name="Label" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 8.0
+offset_right = 1072.0
+offset_bottom = 31.0
+text = "Level:"
+
+[node name="level" type="Label" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1072.0
+offset_top = 8.0
+offset_right = 1152.0
+offset_bottom = 31.0
+text = "0"
+
+[node name="leveltestbutton" type="Button" parent="TopBar"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 8.0
+offset_right = 520.0
+offset_bottom = 40.0
+text = "exp"
+
+[node name="MasteryTab" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 206.0
+offset_top = 44.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="MasteryTab"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 62.0
+offset_right = 388.0
+offset_bottom = 290.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p8208")
+
+[node name="Label" type="Label" parent="MasteryTab/Panel"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 11.0
+offset_right = 269.0
+offset_bottom = 34.0
+text = "Chopping Mastery"
+horizontal_alignment = 1
+
+[node name="WoodMasteryProgressbar" type="ProgressBar" parent="MasteryTab/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ArenaTab" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 40.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="BackyardPanel" type="Panel" parent="ArenaTab"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 256.0
+offset_bottom = 176.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_axmix")
+
+[node name="Label" type="Label" parent="ArenaTab/BackyardPanel"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 23.0
+text = "Backyard"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ArenaTab/BackyardPanel"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 55.0
+text = "Recommanded Level:"
+
+[node name="Label3" type="Label" parent="ArenaTab/BackyardPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 56.0
+offset_bottom = 79.0
+text = "0-10"
+
+[node name="Button" type="Button" parent="ArenaTab/BackyardPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 104.0
+offset_right = 64.0
+offset_bottom = 135.0
+text = "Travel"
+
+[node name="TextureRect" type="TextureRect" parent="ArenaTab/BackyardPanel"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 64.0
+offset_right = 184.0
+offset_bottom = 144.0
+texture = ExtResource("6_jf511")
+expand_mode = 1
+
+[node name="BackyardTab" type="Panel" parent="ArenaTab"]
+visible = false
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 608.0
 
 [connection signal="pressed" from="tabs/Woodtab" to="." method="_on_woodtab_pressed"]
 [connection signal="pressed" from="tabs/Minetab" to="." method="_on_minetab_pressed"]
 [connection signal="pressed" from="tabs/Craftingtab" to="." method="_on_craftingtab_pressed"]
-[connection signal="pressed" from="tabs/Inventory" to="." method="_on_inventory_pressed"]
-[connection signal="pressed" from="wood_tab/wood_panel/wood_button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="wood_tab/wood_panel/wood_button" to="." method="_on_wood_button_pressed"]
-[connection signal="pressed" from="mines_tab/coal_panel/coal_button" to="." method="_on_coal_button_pressed"]
-[connection signal="pressed" from="mines_tab/stone_panel/stone_button" to="." method="_on_stone_button_pressed"]
+[connection signal="pressed" from="tabs/InventoryTab" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="tabs/MasteryTab" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="tabs/ArenaTab" to="." method="_on_arena_pressed"]
+[connection signal="pressed" from="tabs/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="WoodTab/wood_panel/Panel/WoodCollectResourceButton" to="." method="_on_wood_collect_resource_button_pressed"]
+[connection signal="pressed" from="WoodTab/wood_panel/wood_button" to="." method="_on_wood_button_pressed"]
+[connection signal="pressed" from="MineTab/StonePanel/TempStoragePanel/StoneCollectResourceButton" to="." method="_on_stone_collect_resource_button_pressed"]
+[connection signal="pressed" from="MineTab/StonePanel/Stone_button" to="." method="_on_stone_button_pressed"]
+[connection signal="pressed" from="TopBar/leveltestbutton" to="." method="_on_button_pressed"]

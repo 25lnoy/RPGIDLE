@@ -21,4 +21,4 @@ GlobalSignals="*res://GlobalSignals.gd"
 
 [display]
 
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
