@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://d1hp2w0ni1ana"]
+
+[ext_resource type="Texture2D" uid="uid://bjcw0h4h18n83" path="res://Sprites/download (4).jpeg" id="1_vpinj"]
+[ext_resource type="Script" uid="uid://cj0ui8rtwyt1j" path="res://ItemData.gd" id="2_kxsa5"]
+
+[resource]
+script = ExtResource("2_kxsa5")
+item_name = "Wooden Axe"
+item_texture = ExtResource("1_vpinj")
+item_amount = 0
+metadata/_custom_type_script = "uid://cj0ui8rtwyt1j"

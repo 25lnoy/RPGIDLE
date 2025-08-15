@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cdpctraflrx1b"]
+
+[ext_resource type="Texture2D" uid="uid://ckmqiii42v6r0" path="res://Sprites/download (3).jpeg" id="1_2aoax"]
+[ext_resource type="Script" uid="uid://cj0ui8rtwyt1j" path="res://ItemData.gd" id="2_3ahs3"]
+
+[resource]
+script = ExtResource("2_3ahs3")
+item_name = "Wooden Sticks"
+item_texture = ExtResource("1_2aoax")
+item_amount = 4
+metadata/_custom_type_script = "uid://cj0ui8rtwyt1j"
