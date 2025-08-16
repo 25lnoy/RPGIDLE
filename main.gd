@@ -4,11 +4,11 @@ extends Control
 @export var wood = 0
 var coal = 0
 var stone = 0
-var userlevel = 6
+var userlevel = 10
 var userexp = 0
 var woodtime = 10
-
-
+var stickcrafttime = 10
+var woodenaxecrafttime = 10
 
 #Runs on startup
 func _ready():
@@ -86,6 +86,7 @@ func _on_arena_pressed() -> void:
 func _process(delta):
 	_user_level_crafting()
 	_tool_buffs()
+	_popup_progress_bar_time()
 	#when the value of the level reaches the max, it will play the level func
 	if %LevelProgressBar.value >= %LevelProgressBar.max_value:
 		Level()
@@ -93,12 +94,19 @@ func _process(delta):
 	%TempWoodStorageLabel.text = str(wood)
 	%TempStoneStorageLabel.text = str(stone)
 	%Stone_progress.value = %Stone_timer.time_left
-	%WoodenStickProgressbar.value = %WoodenStickTimer.time_left
-	%WoodenAxeCraftProgress.value = %WoodenAxeCraftTimer.time_left
 	%wood_progress.max_value = %wood_timer.wait_time
 	%wood_progress.value = %wood_timer.time_left
 	%LevelProgressBar.value = userexp
 
+#Allow for the popup in crafting to connect the progress bar to the
+#timer that is currently needed
+func _popup_progress_bar_time() -> void:
+	if %CraftPopNameLabel.text == "Wooden Stick":
+		%CraftPopProgressBar.max_value = %WoodenStickTimer.wait_time
+		%CraftPopProgressBar.value = %WoodenStickTimer.time_left
+	if %CraftPopNameLabel.text == "Wooden Axe":
+		%CraftPopProgressBar.value = %WoodenAxeCraftTimer.time_left
+		%CraftPopProgressBar.max_value = %WoodenAxeCraftTimer.wait_time
 func _user_level_crafting() -> void:
 	#Sets the level you need to be to craft a item
 	if userlevel < 5:
@@ -120,10 +128,10 @@ func _user_level_crafting() -> void:
 		%WoodenPickCraftButton.disabled = false
 		%WoodenPickCraftButton.text = "Wooden Pickaxe"
 
+#Allows for tool buffls by shortening the time for chopping trees
 func _tool_buffs() -> void:
 	if GlobalSignals.wooden_axe_data.item_amount == 1:
-		print(woodtime)
-		woodtime = 
+		woodtime = 8
 
 #starts the timer when the button is pressed
 func _on_wood_button_pressed() -> void:
@@ -138,6 +146,7 @@ func _on_wood_button_pressed() -> void:
 		%wood_progress.value = 0
 		%wood_button.text = "Start Chopping"
 		%wood_button.disabled = false
+
 #when the button is pressed adds wood var to inventory
 func _on_wood_collect_resource_button_pressed() -> void:
 	GlobalSignals.wood_item_data.item_amount += wood
@@ -145,6 +154,7 @@ func _on_wood_collect_resource_button_pressed() -> void:
 	wood = 0
 	# Emit signal to update UI if you want	
 	GlobalSignals.emit_signal("UpdateInventory")
+
 #starts the timer when the button is pressed
 func _on_stone_button_pressed() -> void:
 	if %Stone_timer.is_stopped():
@@ -158,29 +168,35 @@ func _on_stone_button_pressed() -> void:
 		%Stone_progress.value = 0
 		%Stone_button.text = "Start Chopping"
 		%Stone_button.disabled = false
+
 #when the timer ends adds 1 stone to the var
 func _on_Stone_timer_timeout() -> void:
 	stone += 1
-	#when the button is pressed adds stone var to inventory
+
+
+#when the button is pressed adds stone var to inventory
 func _on_stone_collect_resource_button_pressed() -> void:
 	GlobalSignals.stone_item_data.item_amount += stone
 	# Reset local stone to 0 if needed
 	stone = 0
 	# Emit signal to update 
 	GlobalSignals.emit_signal("UpdateInventory")
+
 #when the timer ends adds 1 wood to the var
 func _on_wood_timer_timeout() -> void:
 	wood += 1
-#When user level progress bar reached max, calculates the next levels exp
 
+#When user level progress bar reached max, calculates the next levels exp
 func Level() -> void:
 	%LevelProgressBar.max_value = (%LevelProgressBar.max_value + 10 ) * 1.1
 	userexp = 0
 	#adds 1 level to player
 	userlevel += 1
+
 #Opens the are you sure and allows to leave
 func _on_quit_button_pressed() -> void:
 	%SaveandQuit.visible = true
+
 #Takes user to main menu
 func _on_yes_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
@@ -189,34 +205,71 @@ func _on_yes_button_pressed() -> void:
 func _on_no_button_pressed() -> void:
 	%SaveandQuit.visible = false
 
-
+#Opens up the popup panel with the data for Wooden sticks
 func _on_stick_craft_button_pressed() -> void:
+	if %CraftPopUp.visible == false:
+		%CraftPopUp.visible = true
+		%CraftPopNameLabel.text = "Wooden Stick"
+		%CraftPopItemImage.texture = load("res://Sprites/download (3).jpeg")
+		%CraftPopAmountNeedLabel.text = "Required:
+		Wood = 4"
+		%CraftPopCurrentAmount.text = "Owned: 
+		Wood = " + str(GlobalSignals.wood_item_data.item_amount)
+	else:
+		%CraftPopUp.visible = false
+
+#When the button is pushed and the name of the panel
+#is Wooden Stick, it will run this function
+func _wood_stick_craft() -> void:
 	if GlobalSignals.wood_item_data.item_amount >= 4:
 		if %WoodenStickTimer.is_stopped():
-			%WoodenStickTimer.start(5)
-			%StickCraftButton.text = "Crafting..."
+			%WoodenStickTimer.start(stickcrafttime)
+			%CraftPopButton.text = "Crafting..."
 		else:
 			%WoodenStickTimer.stop()
-			%StickCraftButton.text = "Wooden Stick"
+			%CraftPopButton.text = "Craft"
 
+#When the button is pushed it will run the func if it is the right name
+func _craft_pop_button_pressed() -> void:
+	if %CraftPopNameLabel.text == "Wooden Stick":
+		_wood_stick_craft()
+	if %CraftPopNameLabel.text == "Wooden Axe":
+		_wooden_axe_craft()
 
+#When the timer goes off it will do the crafting process
 func _on_wooden_stick_timer_timeout() -> void:
 	if GlobalSignals.wood_item_data.item_amount >= 4:
 		GlobalSignals.wood_item_data.item_amount -= 4
 		GlobalSignals.wooden_sticks_data.item_amount += 1
 		GlobalSignals.emit_signal("UpdateInventory")
+		%CraftPopButton.text = "Craft"
 	else:
 		%WoodenStickTimer.stop()
 		%StickCraftButton.text = "Craft Wooden Stick"
 
+
 func _on_wooden_axe_craft_button_pressed() -> void:
+	if %CraftPopUp.visible == false:
+		%CraftPopUp.visible = true
+		%CraftPopNameLabel.text = "Wooden Axe"
+		%CraftPopItemImage.texture = load("res://Sprites/download (4).jpeg")
+		%CraftPopAmountNeedLabel.text = "Required:
+		Wood = 12
+		Stick = 4"
+		%CraftPopCurrentAmount.text = "Owned:\n" \
+	+ "Wood = " + str(GlobalSignals.wood_item_data.item_amount) + "\n" \
+	+ "Sticks = " + str(GlobalSignals.wooden_sticks_data.item_amount)
+	else:
+		%CraftPopUp.visible = false
+
+func _wooden_axe_craft() -> void:
 	if GlobalSignals.wood_item_data.item_amount >= 12 and GlobalSignals.wooden_sticks_data.item_amount >= 4:
 		if %WoodenAxeCraftTimer.is_stopped():
-			%WoodenAxeCraftTimer.start(5)
+			%WoodenAxeCraftTimer.start(woodenaxecrafttime)
 			%WoodenAxeCraftButton.text = "Crafting..."
 		else:
 			%WoodenAxeCraftTimer.stop()
-			%WoodenAxeCraftButton.text = "Craft Wooden Axe"
+			%WoodenAxeCraftButton.text = "Craft"
 
 func _on_wooden_axe_craft_timer_timeout() -> void:
 	if GlobalSignals.wood_item_data.item_amount >= 12 and GlobalSignals.wooden_sticks_data.item_amount >= 4:
@@ -229,6 +282,7 @@ func _on_wooden_axe_craft_timer_timeout() -> void:
 		%WoodenAxeCraftTimer.stop()
 		%WoodenAxeCraftButton.text = "Wooden Axe"
 
-
+#test for level and exp
+#TEMP
 func _on_button_pressed() -> void:
 	userexp += 3

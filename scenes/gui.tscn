@@ -43,7 +43,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jqlde")
-wood = null
 
 [node name="tabs" type="Panel" parent="."]
 layout_mode = 2
@@ -382,15 +381,6 @@ text = "Wooden Sticks"
 [node name="WoodenStickTimer" type="Timer" parent="CraftingTab/CraftingtablePanel/GridContainer/StickCraftButton"]
 unique_name_in_owner = true
 
-[node name="WoodenStickProgressbar" type="ProgressBar" parent="CraftingTab/CraftingtablePanel/GridContainer/StickCraftButton"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 16.0
-offset_top = -40.0
-offset_right = 200.0
-offset_bottom = -13.0
-max_value = 5.0
-
 [node name="WoodenAxeCraftButton" type="Button" parent="CraftingTab/CraftingtablePanel/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
@@ -400,20 +390,72 @@ text = "Wooden Axe"
 [node name="WoodenAxeCraftTimer" type="Timer" parent="CraftingTab/CraftingtablePanel/GridContainer/WoodenAxeCraftButton"]
 unique_name_in_owner = true
 
-[node name="WoodenAxeCraftProgress" type="ProgressBar" parent="CraftingTab/CraftingtablePanel/GridContainer/WoodenAxeCraftButton"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 12.0
-offset_top = -32.0
-offset_right = 184.0
-offset_bottom = -5.0
-max_value = 5.0
-
 [node name="WoodenPickCraftButton" type="Button" parent="CraftingTab/CraftingtablePanel/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Wooden Pickaxe"
+
+[node name="CraftPopUp" type="Panel" parent="CraftingTab/CraftingtablePanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 384.0
+offset_bottom = 416.0
+
+[node name="CraftPopNameLabel" type="Label" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 8.0
+offset_right = 320.0
+offset_bottom = 40.0
+text = "Name of Item"
+horizontal_alignment = 1
+
+[node name="CraftPopItemImage" type="TextureRect" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 104.0
+offset_top = 40.0
+offset_right = 216.0
+offset_bottom = 136.0
+expand_mode = 1
+
+[node name="CraftPopAmountNeedLabel" type="Label" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 152.0
+offset_right = 320.0
+offset_bottom = 201.0
+horizontal_alignment = 1
+
+[node name="CraftPopCurrentAmount" type="Label" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 232.0
+offset_right = 320.0
+offset_bottom = 307.0
+horizontal_alignment = 1
+
+[node name="CraftPopButton" type="Button" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 64.0
+offset_top = 352.0
+offset_right = 256.0
+offset_bottom = 383.0
+theme_override_colors/icon_normal_color = Color(0.414066, 0.414066, 0.414066, 1)
+text = "Craft"
+
+[node name="CraftPopProgressBar" type="ProgressBar" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 320.0
+offset_right = 296.0
+offset_bottom = 347.0
 
 [node name="InventoryTab" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -674,6 +716,7 @@ text = "No"
 [connection signal="timeout" from="CraftingTab/CraftingtablePanel/GridContainer/StickCraftButton/WoodenStickTimer" to="." method="_on_wooden_stick_timer_timeout"]
 [connection signal="pressed" from="CraftingTab/CraftingtablePanel/GridContainer/WoodenAxeCraftButton" to="." method="_on_wooden_axe_craft_button_pressed"]
 [connection signal="timeout" from="CraftingTab/CraftingtablePanel/GridContainer/WoodenAxeCraftButton/WoodenAxeCraftTimer" to="." method="_on_wooden_axe_craft_timer_timeout"]
+[connection signal="pressed" from="CraftingTab/CraftingtablePanel/CraftPopUp/CraftPopButton" to="." method="_craft_pop_button_pressed"]
 [connection signal="pressed" from="TopBar/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer2/NoButton" to="." method="_on_no_button_pressed"]
