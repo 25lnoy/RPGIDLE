@@ -353,68 +353,61 @@ offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 642.0
 
-[node name="CraftingtablePanel" type="Panel" parent="CraftingTab"]
-layout_mode = 0
-offset_top = 104.0
-offset_right = 960.0
-offset_bottom = 584.0
-
-[node name="GridContainer" type="GridContainer" parent="CraftingTab/CraftingtablePanel"]
+[node name="GridContainer" type="GridContainer" parent="CraftingTab"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.466667
 anchor_top = 0.0836
 anchor_right = 0.975
 anchor_bottom = 0.859795
-offset_top = -0.128
+offset_top = 0.373596
 offset_right = -6.10352e-05
-offset_bottom = 3.29852
+offset_bottom = 3.80011
 columns = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="StickCraftButton" type="Button" parent="CraftingTab/CraftingtablePanel/GridContainer"]
+[node name="StickCraftButton" type="Button" parent="CraftingTab/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Wooden Sticks"
 
-[node name="WoodenStickTimer" type="Timer" parent="CraftingTab/CraftingtablePanel/GridContainer/StickCraftButton"]
+[node name="WoodenStickTimer" type="Timer" parent="CraftingTab/GridContainer/StickCraftButton"]
 unique_name_in_owner = true
 
-[node name="WoodenAxeCraftButton" type="Button" parent="CraftingTab/CraftingtablePanel/GridContainer"]
+[node name="WoodenAxeCraftButton" type="Button" parent="CraftingTab/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Wooden Axe"
 
-[node name="WoodenAxeCraftTimer" type="Timer" parent="CraftingTab/CraftingtablePanel/GridContainer/WoodenAxeCraftButton"]
+[node name="WoodenAxeCraftTimer" type="Timer" parent="CraftingTab/GridContainer/WoodenAxeCraftButton"]
 unique_name_in_owner = true
 
-[node name="WoodenPickCraftButton" type="Button" parent="CraftingTab/CraftingtablePanel/GridContainer"]
+[node name="WoodenPickCraftButton" type="Button" parent="CraftingTab/GridContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Wooden Pickaxe"
 
-[node name="CraftPopUp" type="Panel" parent="CraftingTab/CraftingtablePanel"]
+[node name="CraftPopUp" type="Panel" parent="CraftingTab"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_left = 64.0
 offset_top = 24.0
 offset_right = 384.0
-offset_bottom = 416.0
+offset_bottom = 560.0
 
-[node name="CraftPopNameLabel" type="Label" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+[node name="CraftPopNameLabel" type="Label" parent="CraftingTab/CraftPopUp"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 8.0
 offset_right = 320.0
 offset_bottom = 40.0
-text = "Name of Item"
 horizontal_alignment = 1
 
-[node name="CraftPopItemImage" type="TextureRect" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+[node name="CraftPopItemImage" type="TextureRect" parent="CraftingTab/CraftPopUp"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 104.0
@@ -423,39 +416,51 @@ offset_right = 216.0
 offset_bottom = 136.0
 expand_mode = 1
 
-[node name="CraftPopAmountNeedLabel" type="Label" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+[node name="CraftPopAmountNeedLabel" type="Label" parent="CraftingTab/CraftPopUp"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 152.0
-offset_right = 320.0
-offset_bottom = 201.0
+offset_right = 160.0
+offset_bottom = 320.0
+text = "i"
 horizontal_alignment = 1
 
-[node name="CraftPopCurrentAmount" type="Label" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+[node name="CraftPopCurrentAmount" type="Label" parent="CraftingTab/CraftPopUp"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_top = 232.0
+offset_left = 160.0
+offset_top = 152.0
 offset_right = 320.0
-offset_bottom = 307.0
+offset_bottom = 320.0
+text = "i"
 horizontal_alignment = 1
 
-[node name="CraftPopButton" type="Button" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+[node name="CraftPopButton" type="Button" parent="CraftingTab/CraftPopUp"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 64.0
-offset_top = 352.0
+offset_top = 496.0
 offset_right = 256.0
-offset_bottom = 383.0
+offset_bottom = 527.0
 theme_override_colors/icon_normal_color = Color(0.414066, 0.414066, 0.414066, 1)
 text = "Craft"
 
-[node name="CraftPopProgressBar" type="ProgressBar" parent="CraftingTab/CraftingtablePanel/CraftPopUp"]
+[node name="CraftPopProgressBar" type="ProgressBar" parent="CraftingTab/CraftPopUp"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 24.0
-offset_top = 320.0
+offset_top = 464.0
 offset_right = 296.0
-offset_bottom = 347.0
+offset_bottom = 491.0
+
+[node name="CurrentOwnedLabel" type="Label" parent="CraftingTab/CraftPopUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 80.0
+offset_top = 384.0
+offset_right = 248.0
+offset_bottom = 456.0
+horizontal_alignment = 1
 
 [node name="InventoryTab" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -712,11 +717,11 @@ text = "No"
 [connection signal="timeout" from="WoodTab/wood_panel/wood_timer" to="." method="_on_wood_timer_timeout"]
 [connection signal="pressed" from="MineTab/StonePanel/TempStoragePanel/StoneCollectResourceButton" to="." method="_on_stone_collect_resource_button_pressed"]
 [connection signal="pressed" from="MineTab/StonePanel/Stone_button" to="." method="_on_stone_button_pressed"]
-[connection signal="pressed" from="CraftingTab/CraftingtablePanel/GridContainer/StickCraftButton" to="." method="_on_stick_craft_button_pressed"]
-[connection signal="timeout" from="CraftingTab/CraftingtablePanel/GridContainer/StickCraftButton/WoodenStickTimer" to="." method="_on_wooden_stick_timer_timeout"]
-[connection signal="pressed" from="CraftingTab/CraftingtablePanel/GridContainer/WoodenAxeCraftButton" to="." method="_on_wooden_axe_craft_button_pressed"]
-[connection signal="timeout" from="CraftingTab/CraftingtablePanel/GridContainer/WoodenAxeCraftButton/WoodenAxeCraftTimer" to="." method="_on_wooden_axe_craft_timer_timeout"]
-[connection signal="pressed" from="CraftingTab/CraftingtablePanel/CraftPopUp/CraftPopButton" to="." method="_craft_pop_button_pressed"]
+[connection signal="pressed" from="CraftingTab/GridContainer/StickCraftButton" to="." method="_on_stick_craft_button_pressed"]
+[connection signal="timeout" from="CraftingTab/GridContainer/StickCraftButton/WoodenStickTimer" to="." method="_on_wooden_stick_timer_timeout"]
+[connection signal="pressed" from="CraftingTab/GridContainer/WoodenAxeCraftButton" to="." method="_on_wooden_axe_craft_button_pressed"]
+[connection signal="timeout" from="CraftingTab/GridContainer/WoodenAxeCraftButton/WoodenAxeCraftTimer" to="." method="_on_wooden_axe_craft_timer_timeout"]
+[connection signal="pressed" from="CraftingTab/CraftPopUp/CraftPopButton" to="." method="_craft_pop_button_pressed"]
 [connection signal="pressed" from="TopBar/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer2/NoButton" to="." method="_on_no_button_pressed"]

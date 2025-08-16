@@ -1,5 +1,5 @@
 extends Control
-
+#Not my code, got it from a video for help
 @export var inventory_data : InventoryData
 var current_dragged_item_item : Dictionary
 
