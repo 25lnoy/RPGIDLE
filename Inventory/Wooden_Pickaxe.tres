@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://b58ojb5v2gej7"]
+
+[ext_resource type="Texture2D" uid="uid://bnn3yo7i1c118" path="res://Sprites/images (1).png" id="1_8s8bd"]
+[ext_resource type="Script" uid="uid://cj0ui8rtwyt1j" path="res://ItemData.gd" id="2_d70dh"]
+
+[resource]
+script = ExtResource("2_d70dh")
+item_name = "Wooden Pickaxe"
+item_texture = ExtResource("1_8s8bd")
+item_amount = 0
+metadata/_custom_type_script = "uid://cj0ui8rtwyt1j"

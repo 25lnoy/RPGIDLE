@@ -1,23 +1,25 @@
-[gd_scene load_steps=15 format=3 uid="uid://8umpvtgdwv10"]
+[gd_scene load_steps=17 format=3 uid="uid://8umpvtgdwv10"]
 
 [ext_resource type="Script" uid="uid://d28wcffekglcy" path="res://main.gd" id="1_jqlde"]
+[ext_resource type="Texture2D" uid="uid://pby6arefrpf6" path="res://Sprites/mountain-forest-jungle-trees-cartoon-background-generative-ai.jpg" id="2_7yii4"]
 [ext_resource type="Texture2D" uid="uid://brg1r0wve3hem" path="res://Sprites/tree.webp" id="2_08a8y"]
 [ext_resource type="Texture2D" uid="uid://dl1oldgwcx8q0" path="res://Sprites/download (1).jpeg" id="3_7yii4"]
 [ext_resource type="PackedScene" uid="uid://cdt86t2llv7gc" path="res://Inventory/InventoryWindow.tscn" id="4_4yt8u"]
+[ext_resource type="Texture2D" uid="uid://dqwf11prybi5k" path="res://Sprites/3d-fantasy-scene.jpg" id="4_7yii4"]
 [ext_resource type="Texture2D" uid="uid://dgxoxtlcshl0h" path="res://Sprites/images.jpeg" id="5_p54wi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8o8l"]
 bg_color = Color(0.353438, 0.353438, 0.353438, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cor1f"]
-bg_color = Color(0.740818, 0.518361, 0.368846, 1)
+bg_color = Color(0.450837, 0.63657, 0.360296, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u77ya"]
-bg_color = Color(0.548947, 0.364773, 0.222666, 1)
+bg_color = Color(0.248737, 0.42219, 0.154969, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf511"]
 bg_color = Color(0.658965, 0.606037, 0.576766, 1)
@@ -110,13 +112,19 @@ offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
+[node name="TextureRect" type="TextureRect" parent="WoodTab"]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 584.0
+texture = ExtResource("2_7yii4")
+expand_mode = 1
+
 [node name="wood_panel" type="Panel" parent="WoodTab"]
-custom_minimum_size = Vector2(380, 250)
 layout_mode = 1
 offset_left = 40.0
 offset_top = 40.0
-offset_right = 420.0
-offset_bottom = 290.0
+offset_right = 352.0
+offset_bottom = 272.0
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_cor1f")
 
@@ -192,31 +200,39 @@ text = "Temp Storage"
 horizontal_alignment = 1
 
 [node name="wood_image" type="TextureRect" parent="WoodTab/wood_panel"]
-layout_mode = 0
-offset_left = 202.0
-offset_top = 11.0
-offset_right = 360.0
-offset_bottom = 148.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 126.0
+grow_horizontal = 0
 texture = ExtResource("2_08a8y")
 expand_mode = 1
 
 [node name="wood_button" type="Button" parent="WoodTab/wood_panel"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 11.0
-offset_top = 85.0
-offset_right = 189.0
-offset_bottom = 116.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -52.0
+offset_right = 160.0
+offset_bottom = -21.0
+grow_vertical = 2
 action_mode = 0
 text = "Start Chopping"
 
 [node name="wood_progress" type="ProgressBar" parent="WoodTab/wood_panel"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 2.0
-offset_top = 43.0
-offset_right = 193.0
-offset_bottom = 70.0
+layout_mode = 1
+offset_left = 17.0
+offset_top = 30.0
+offset_right = 160.0
+offset_bottom = 57.0
 max_value = 5.0
 
 [node name="wood_timer" type="Timer" parent="WoodTab/wood_panel"]
@@ -231,13 +247,19 @@ offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 641.0
 
+[node name="TextureRect" type="TextureRect" parent="MineTab"]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 576.0
+texture = ExtResource("4_7yii4")
+expand_mode = 1
+
 [node name="StonePanel" type="Panel" parent="MineTab"]
-custom_minimum_size = Vector2(380, 250)
 layout_mode = 0
 offset_left = 40.0
 offset_top = 40.0
-offset_right = 420.0
-offset_bottom = 290.0
+offset_right = 352.0
+offset_bottom = 272.0
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_jf511")
 
@@ -316,10 +338,10 @@ horizontal_alignment = 1
 
 [node name="Stoneimage" type="TextureRect" parent="MineTab/StonePanel"]
 layout_mode = 0
-offset_left = 202.0
-offset_top = 11.0
-offset_right = 370.0
-offset_bottom = 148.0
+offset_left = 160.0
+offset_top = 8.0
+offset_right = 296.0
+offset_bottom = 129.0
 texture = ExtResource("3_7yii4")
 expand_mode = 1
 
@@ -328,7 +350,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 11.0
 offset_top = 85.0
-offset_right = 189.0
+offset_right = 144.0
 offset_bottom = 116.0
 action_mode = 0
 text = "Start Mining"
@@ -338,7 +360,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 2.0
 offset_top = 43.0
-offset_right = 193.0
+offset_right = 152.0
 offset_bottom = 70.0
 max_value = 5.0
 
@@ -347,6 +369,7 @@ unique_name_in_owner = true
 
 [node name="CraftingTab" type="Panel" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 offset_left = 192.0
 offset_top = 64.0
@@ -389,6 +412,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Wooden Pickaxe"
+
+[node name="WoodenPickCraftTimer" type="Timer" parent="CraftingTab/GridContainer/WoodenPickCraftButton"]
+unique_name_in_owner = true
 
 [node name="CraftPopUp" type="Panel" parent="CraftingTab"]
 unique_name_in_owner = true
@@ -721,6 +747,8 @@ text = "No"
 [connection signal="timeout" from="CraftingTab/GridContainer/StickCraftButton/WoodenStickTimer" to="." method="_on_wooden_stick_timer_timeout"]
 [connection signal="pressed" from="CraftingTab/GridContainer/WoodenAxeCraftButton" to="." method="_on_wooden_axe_craft_button_pressed"]
 [connection signal="timeout" from="CraftingTab/GridContainer/WoodenAxeCraftButton/WoodenAxeCraftTimer" to="." method="_on_wooden_axe_craft_timer_timeout"]
+[connection signal="pressed" from="CraftingTab/GridContainer/WoodenPickCraftButton" to="." method="_on_wooden_pick_craft_button_pressed"]
+[connection signal="timeout" from="CraftingTab/GridContainer/WoodenPickCraftButton/WoodenPickCraftTimer" to="." method="_on_wooden_pick_craft_timer_timeout"]
 [connection signal="pressed" from="CraftingTab/CraftPopUp/CraftPopButton" to="." method="_craft_pop_button_pressed"]
 [connection signal="pressed" from="TopBar/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer/YesButton" to="." method="_on_yes_button_pressed"]

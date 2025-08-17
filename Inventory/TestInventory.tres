@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=8 format=3 uid="uid://s2rsd7vq0rdk"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=9 format=3 uid="uid://s2rsd7vq0rdk"]
 
 [ext_resource type="Script" uid="uid://cj0ui8rtwyt1j" path="res://ItemData.gd" id="1_qtp1f"]
 [ext_resource type="Resource" uid="uid://cnueoti7l63r0" path="res://Inventory/Coal.tres" id="2_qtp1f"]
@@ -7,7 +7,8 @@
 [ext_resource type="Resource" uid="uid://cdpctraflrx1b" path="res://Inventory/Wooden_Stick.tres" id="5_nwueo"]
 [ext_resource type="Script" uid="uid://d33s1411utlaw" path="res://InventoryData.gd" id="5_t8hud"]
 [ext_resource type="Resource" uid="uid://d1hp2w0ni1ana" path="res://Inventory/Wooden_Axe.tres" id="6_lm4me"]
+[ext_resource type="Resource" uid="uid://b58ojb5v2gej7" path="res://Inventory/Wooden_Pickaxe.tres" id="7_8mn72"]
 
 [resource]
 script = ExtResource("5_t8hud")
-item_data = Array[ExtResource("1_qtp1f")]([ExtResource("2_qtp1f"), ExtResource("3_nwueo"), ExtResource("4_lm4me"), ExtResource("5_nwueo"), ExtResource("6_lm4me")])
+item_data = Array[ExtResource("1_qtp1f")]([ExtResource("2_qtp1f"), ExtResource("3_nwueo"), ExtResource("4_lm4me"), ExtResource("5_nwueo"), ExtResource("6_lm4me"), ExtResource("7_8mn72")])

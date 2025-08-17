@@ -9,6 +9,7 @@ var userexp = 0
 var woodtime = 10
 var stickcrafttime = 2
 var woodenaxecrafttime = 10
+var woodenpickaxecrafttime = 10
 
 #Runs on startup
 func _ready():
@@ -107,6 +108,10 @@ func _popup_progress_bar_time() -> void:
 	if %CraftPopNameLabel.text == "Wooden Axe":
 		%CraftPopProgressBar.value = %WoodenAxeCraftTimer.time_left
 		%CraftPopProgressBar.max_value = %WoodenAxeCraftTimer.wait_time
+	if %CraftPopNameLabel.text == "Wooden Pickaxe":
+		%CraftPopProgressBar.value = %WoodenPickCraftTimer.time_left
+		%CraftPopProgressBar.max_value = %WoodenPickCraftTimer.wait_time
+	
 func _user_level_crafting() -> void:
 	#Sets the level you need to be to craft a item
 	if userlevel < 5:
@@ -132,6 +137,15 @@ func _user_level_crafting() -> void:
 func _tool_buffs() -> void:
 	if GlobalSignals.wooden_axe_data.item_amount == 1:
 		woodtime = 8
+	if GlobalSignals.wooden_pickaxe_data.item_amount == 1:
+		%Stone_button.disabled = false
+		if %Stone_timer.is_stopped():
+			%Stone_button.text = "Start Mining"
+		else:
+			%Stone_button.text = "Mining..."
+	else:
+		%Stone_button.disabled = true
+		%Stone_button.text = "Requires Pickaxe"
 
 #starts the timer when the button is pressed
 func _on_wood_button_pressed() -> void:
@@ -211,21 +225,15 @@ func _on_no_button_pressed() -> void:
 
 #Opens up the popup panel with the data for Wooden sticks
 func _on_stick_craft_button_pressed() -> void:
-	if %CraftPopUp.visible == false :
-		%CraftPopUp.visible = true
-		%CraftPopNameLabel.text = "Wooden Stick"
-		%CraftPopItemImage.texture = load("res://Sprites/download (3).jpeg")
-		%CraftPopAmountNeedLabel.text = "Required:
-		Wood = 4"
-		%CraftPopCurrentAmount.text = "Owned:\n" \
-			+ "Wood = " + str(GlobalSignals.wood_item_data.item_amount)
-		%CurrentOwnedLabel.text = "Owned:\n" \
-			+ "Sticks = " + str(GlobalSignals.wooden_sticks_data.item_amount) + "\n"
-	else:
-		if %CraftPopNameLabel.text == "Wooden Axe":
-			%CraftPopUp.visible = true
-		if %CraftPopNameLabel.text == "Wooden Stick":
-			%CraftPopUp.visible = false
+	%CraftPopUp.visible = true
+	%CraftPopNameLabel.text = "Wooden Stick"
+	%CraftPopItemImage.texture = load("res://Sprites/download (3).jpeg")
+	%CraftPopAmountNeedLabel.text = "Required:
+	Wood = 4"
+	%CraftPopCurrentAmount.text = "Owned:\n" \
+		+ "Wood = " + str(GlobalSignals.wood_item_data.item_amount)
+	%CurrentOwnedLabel.text = "Owned:\n" \
+		+ "Sticks = " + str(GlobalSignals.wooden_sticks_data.item_amount) + "\n"
 
 #When the button is pushed and the name of the panel
 #is Wooden Stick, it will run this function
@@ -248,6 +256,8 @@ func _craft_pop_button_pressed() -> void:
 		_wood_stick_craft()
 	if %CraftPopNameLabel.text == "Wooden Axe":
 		_wooden_axe_craft()
+	if %CraftPopNameLabel.text == "Wooden Pickaxe":
+		_wooden_pick_craft()
 
 #Updates the labels on the Popup panel so that the numbers are live.
 func _update_current_amount() -> void:
@@ -262,6 +272,12 @@ func _update_current_amount() -> void:
 			+ "Sticks = " + str(GlobalSignals.wooden_sticks_data.item_amount)
 		%CurrentOwnedLabel.text = "Owned:\n" \
 			+ "Wooden Axes = " + str(GlobalSignals.wooden_axe_data.item_amount) + "\n"
+	if %CraftPopNameLabel.text == "Wooden Pickaxe":
+		%CraftPopCurrentAmount.text = "Owned:\n" \
+			+ "Wood = " + str(GlobalSignals.wood_item_data.item_amount) + "\n" \
+			+ "Sticks = " + str(GlobalSignals.wooden_sticks_data.item_amount)
+		%CurrentOwnedLabel.text = "Owned:\n" \
+			+ "Wooden Pickaxes = " + str(GlobalSignals.wooden_pickaxe_data.item_amount) + "\n"
 
 #When the timer goes off it will do the crafting process
 func _on_wooden_stick_timer_timeout() -> void:
@@ -277,33 +293,28 @@ func _on_wooden_stick_timer_timeout() -> void:
 
 #Sets the Popup panel data
 func _on_wooden_axe_craft_button_pressed() -> void:
-	if %CraftPopUp.visible == false:
-		%CraftPopUp.visible = true
-		%CraftPopNameLabel.text = "Wooden Axe"
-		%CraftPopItemImage.texture = load("res://Sprites/download (4).jpeg")
-		%CraftPopAmountNeedLabel.text = "Required:
-		Wood = 12
-		Stick = 4"
-		%CraftPopCurrentAmount.text = "Owned:\n" \
-			+ "Wood = " + str(GlobalSignals.wood_item_data.item_amount) + "\n" \
-			+ "Sticks = " + str(GlobalSignals.wooden_sticks_data.item_amount)
-		%CurrentOwnedLabel.text = "Owned:\n" \
-			+ "Wooden Axes = " + str(GlobalSignals.wooden_axe_data.item_amount) + "\n"
-	else:
-		if %CraftPopNameLabel.text == "Wooden Axe":
-			%CraftPopUp.visible = false
-		if %CraftPopNameLabel.text == "Wooden Stick":
-			%CraftPopUp.visible = true
+	%CraftPopUp.visible = true
+	%CraftPopNameLabel.text = "Wooden Axe"
+	%CraftPopItemImage.texture = load("res://Sprites/download (4).jpeg")
+	%CraftPopAmountNeedLabel.text = "Required:
+	Wood = 12
+	Stick = 4"
+	%CraftPopCurrentAmount.text = "Owned:\n" \
+		+ "Wood = " + str(GlobalSignals.wood_item_data.item_amount) + "\n" \
+		+ "Sticks = " + str(GlobalSignals.wooden_sticks_data.item_amount)
+	%CurrentOwnedLabel.text = "Owned:\n" \
+		+ "Wooden Axes = " + str(GlobalSignals.wooden_axe_data.item_amount) + "\n"
+
 
 #cheacks if you have enough items and will start the timer and change label text
 func _wooden_axe_craft() -> void:
 	if GlobalSignals.wood_item_data.item_amount >= 12 and GlobalSignals.wooden_sticks_data.item_amount >= 4:
 		if %WoodenAxeCraftTimer.is_stopped():
 			%WoodenAxeCraftTimer.start(woodenaxecrafttime)
-			%WoodenAxeCraftButton.text = "Crafting..."
+			%CraftPopButton.text = "Crafting..."
 		else:
 			%WoodenAxeCraftTimer.stop()
-			%WoodenAxeCraftButton.text = "Craft"
+			%CraftPopButton.text = "Craft"
 #When the timer ends adds items to invertory and take away
 func _on_wooden_axe_craft_timer_timeout() -> void:
 	if GlobalSignals.wood_item_data.item_amount >= 12 and GlobalSignals.wooden_sticks_data.item_amount >= 4:
@@ -316,7 +327,36 @@ func _on_wooden_axe_craft_timer_timeout() -> void:
 		%WoodenAxeCraftTimer.stop()
 		%WoodenAxeCraftButton.text = "Wooden Axe"
 
-#test for level and exp
-#TEMP
-func _on_button_pressed() -> void:
-	userexp += 3
+
+func _on_wooden_pick_craft_button_pressed() -> void:
+	%CraftPopUp.visible = true
+	%CraftPopNameLabel.text = "Wooden Pickaxe"
+	%CraftPopItemImage.texture = load("res://Sprites/images (1).png")
+	%CraftPopAmountNeedLabel.text = "Required:
+	Wood = 20
+	Stick = 8"
+	%CraftPopCurrentAmount.text = "Owned:\n" \
+		+ "Wood = " + str(GlobalSignals.wood_item_data.item_amount) + "\n" \
+		+ "Sticks = " + str(GlobalSignals.wooden_sticks_data.item_amount)
+	%CurrentOwnedLabel.text = "Owned:\n" \
+		+ "Wooden Pickaxes = " + str(GlobalSignals.wooden_pickaxe_data.item_amount) + "\n"
+
+
+func _wooden_pick_craft() -> void:
+	if GlobalSignals.wood_item_data.item_amount >= 20 and GlobalSignals.wooden_sticks_data.item_amount >= 8:
+		if %WoodenPickCraftTimer.is_stopped():
+			%WoodenPickCraftTimer.start(woodenpickaxecrafttime)
+			%CraftPopButton.text = "Crafting..."
+		else:
+			%WoodenPickCraftTimer.stop()
+			%CraftPopButton.text = "Craft"
+
+func _on_wooden_pick_craft_timer_timeout() -> void:
+	if GlobalSignals.wood_item_data.item_amount >= 20 and GlobalSignals.wooden_sticks_data.item_amount >= 8:
+		GlobalSignals.wood_item_data.item_amount -= 20
+		GlobalSignals.wooden_sticks_data.item_amount -= 8
+		GlobalSignals.wooden_pickaxe_data.item_amount += 1
+		GlobalSignals.emit_signal("UpdateInventory")
+		_update_current_amount()
+		%WoodenPickCraftTimer.stop()
+		%CraftPopButton.text = "Craft"
