@@ -1,8 +1,7 @@
 extends Control
 
 #storage of each item
-@export var wood = 0
-var coal = 0
+var wood = 0
 var stone = 0
 var userlevel = 0
 var userexp = 0
@@ -15,6 +14,12 @@ var choppingmastery = 0
 var choppingmasteryexp = 0
 var miningmastery = 0
 var miningmasteryexp = 0
+
+func _on_loadbutton_pressed() -> void:
+	pass
+
+func _on_savebutton_pressed() -> void:
+	pass
 
 #Runs on startup
 func _ready():
@@ -215,7 +220,6 @@ func _on_stone_button_pressed() -> void:
 #when the timer ends adds 1 stone to the var
 func _on_Stone_timer_timeout() -> void:
 	stone += 1
-	#miningmasteryexp += 1
 
 
 #when the button is pressed adds stone var to inventory
@@ -230,7 +234,6 @@ func _on_stone_collect_resource_button_pressed() -> void:
 #when the timer ends adds 1 wood to the var
 func _on_wood_timer_timeout() -> void:
 	wood += 1
-	#choppingmasteryexp += 1
 
 #When user level progress bar reached max, calculates the next levels exp
 func Level() -> void:

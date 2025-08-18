@@ -7,5 +7,5 @@
 script = ExtResource("2_d70dh")
 item_name = "Wooden Pickaxe"
 item_texture = ExtResource("1_8s8bd")
-item_amount = 1
+item_amount = 0
 metadata/_custom_type_script = "uid://cj0ui8rtwyt1j"

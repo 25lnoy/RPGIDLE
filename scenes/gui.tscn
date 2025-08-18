@@ -558,8 +558,25 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 19
 text = "Experience"
 
+[node name="savebutton" type="Button" parent="TopBar"]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 8.0
+offset_right = 520.0
+offset_bottom = 56.0
+text = "Save"
+
+[node name="loadbutton" type="Button" parent="TopBar"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 8.0
+offset_right = 456.0
+offset_bottom = 56.0
+text = "Load"
+
 [node name="MasteryTab" type="Panel" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 64.0
@@ -781,6 +798,24 @@ custom_minimum_size = Vector2(140, 60)
 layout_mode = 2
 text = "No"
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 152.0
+offset_right = 952.0
+offset_bottom = 408.0
+text = "You wake up in this weird and questionable world.
+
+Confused and lost, you decide to look around.
+
+You stubble into a forest and a mine.
+
+Interseting.
+
+There are many uses for that.
+
+Let you imagination find you your way home."
+
 [connection signal="pressed" from="tabs/Woodtab" to="." method="_on_woodtab_pressed"]
 [connection signal="pressed" from="tabs/Minetab" to="." method="_on_minetab_pressed"]
 [connection signal="pressed" from="tabs/Craftingtab" to="." method="_on_craftingtab_pressed"]
@@ -800,5 +835,7 @@ text = "No"
 [connection signal="pressed" from="CraftingTab/GridContainer/WoodenPickCraftButton" to="." method="_on_wooden_pick_craft_button_pressed"]
 [connection signal="timeout" from="CraftingTab/GridContainer/WoodenPickCraftButton/WoodenPickCraftTimer" to="." method="_on_wooden_pick_craft_timer_timeout"]
 [connection signal="pressed" from="CraftingTab/CraftPopUp/CraftPopButton" to="." method="_craft_pop_button_pressed"]
+[connection signal="pressed" from="TopBar/savebutton" to="." method="_on_savebutton_pressed"]
+[connection signal="pressed" from="TopBar/loadbutton" to="." method="_on_loadbutton_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer2/NoButton" to="." method="_on_no_button_pressed"]
