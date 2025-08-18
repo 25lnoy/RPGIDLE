@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://8umpvtgdwv10"]
 
-[ext_resource type="Script" uid="uid://d28wcffekglcy" path="res://main.gd" id="1_jqlde"]
+[ext_resource type="Script" uid="uid://d28wcffekglcy" path="res://scripts/main.gd" id="1_jqlde"]
 [ext_resource type="Texture2D" uid="uid://pby6arefrpf6" path="res://Sprites/mountain-forest-jungle-trees-cartoon-background-generative-ai.jpg" id="2_7yii4"]
 [ext_resource type="Texture2D" uid="uid://brg1r0wve3hem" path="res://Sprites/tree.webp" id="2_08a8y"]
 [ext_resource type="Texture2D" uid="uid://dl1oldgwcx8q0" path="res://Sprites/download (1).jpeg" id="3_7yii4"]
@@ -82,7 +82,6 @@ offset_bottom = 75.0
 text = "Inventory"
 
 [node name="MasteryTab" type="Button" parent="tabs"]
-visible = false
 layout_mode = 0
 offset_top = 296.0
 offset_right = 192.0
@@ -559,24 +558,15 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 19
 text = "Experience"
 
-[node name="Button" type="Button" parent="TopBar"]
-layout_mode = 0
-offset_left = 376.0
-offset_top = 8.0
-offset_right = 520.0
-offset_bottom = 56.0
-text = "give exp"
-
 [node name="MasteryTab" type="Panel" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="Panel" type="Panel" parent="MasteryTab"]
+[node name="ChoppingMasteryPanel" type="Panel" parent="MasteryTab"]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 62.0
@@ -584,7 +574,7 @@ offset_right = 388.0
 offset_bottom = 290.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_p8208")
 
-[node name="Label" type="Label" parent="MasteryTab/Panel"]
+[node name="Label" type="Label" parent="MasteryTab/ChoppingMasteryPanel"]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 11.0
@@ -593,16 +583,76 @@ offset_bottom = 34.0
 text = "Chopping Mastery"
 horizontal_alignment = 1
 
-[node name="WoodMasteryProgressbar" type="ProgressBar" parent="MasteryTab/Panel"]
+[node name="ChoppingMasteryProgressbar" type="ProgressBar" parent="MasteryTab/ChoppingMasteryPanel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = 18.0
 offset_top = -44.0
+offset_right = -20.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
+max_value = 10.0
+
+[node name="ChoppingMasterLevel" type="Label" parent="MasteryTab/ChoppingMasteryPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 87.0
+offset_top = 106.0
+offset_right = 223.0
+offset_bottom = 146.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="MiningMasteryPanel" type="Panel" parent="MasteryTab"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 64.0
+offset_right = 888.0
+offset_bottom = 288.0
+
+[node name="Label" type="Label" parent="MasteryTab/MiningMasteryPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 11.0
+offset_right = 100.0
+offset_bottom = 34.0
+grow_horizontal = 2
+text = "Mining Mastery"
+horizontal_alignment = 1
+
+[node name="MiningMasterProgress" type="ProgressBar" parent="MasteryTab/MiningMasteryPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -48.0
+offset_right = 140.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 10.0
+
+[node name="MiningMasteryLevel" type="Label" parent="MasteryTab/MiningMasteryPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 104.0
+offset_top = 96.0
+offset_right = 200.0
+offset_bottom = 136.0
+text = "0"
+horizontal_alignment = 1
 
 [node name="ArenaTab" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -750,6 +800,5 @@ text = "No"
 [connection signal="pressed" from="CraftingTab/GridContainer/WoodenPickCraftButton" to="." method="_on_wooden_pick_craft_button_pressed"]
 [connection signal="timeout" from="CraftingTab/GridContainer/WoodenPickCraftButton/WoodenPickCraftTimer" to="." method="_on_wooden_pick_craft_timer_timeout"]
 [connection signal="pressed" from="CraftingTab/CraftPopUp/CraftPopButton" to="." method="_craft_pop_button_pressed"]
-[connection signal="pressed" from="TopBar/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="SaveandQuit/HBoxContainer/MarginContainer2/NoButton" to="." method="_on_no_button_pressed"]

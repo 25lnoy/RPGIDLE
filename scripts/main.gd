@@ -4,12 +4,17 @@ extends Control
 @export var wood = 0
 var coal = 0
 var stone = 0
-var userlevel = 10
+var userlevel = 0
 var userexp = 0
 var woodtime = 10
+var stonetime = 8
 var stickcrafttime = 2
 var woodenaxecrafttime = 10
 var woodenpickaxecrafttime = 10
+var choppingmastery = 0
+var choppingmasteryexp = 0
+var miningmastery = 0
+var miningmasteryexp = 0
 
 #Runs on startup
 func _ready():
@@ -91,14 +96,32 @@ func _process(delta):
 	#when the value of the level reaches the max, it will play the level func
 	if %LevelProgressBar.value >= %LevelProgressBar.max_value:
 		Level()
+	if %ChoppingMasteryProgressbar.value >= %ChoppingMasteryProgressbar.max_value:
+		_chopping_mastery()
+	if %MiningMasterProgress.value >= %MiningMasterProgress.max_value:
+		_mining_mastery()
 	%level.text = str(userlevel)
 	%TempWoodStorageLabel.text = str(wood)
 	%TempStoneStorageLabel.text = str(stone)
 	%Stone_progress.value = %Stone_timer.time_left
+	%Stone_progress.max_value = %Stone_timer.wait_time
 	%wood_progress.max_value = %wood_timer.wait_time
 	%wood_progress.value = %wood_timer.time_left
 	%LevelProgressBar.value = userexp
+	%ChoppingMasteryProgressbar.value = choppingmasteryexp
+	%MiningMasterProgress.value = miningmasteryexp
+	%ChoppingMasterLevel.text = str(choppingmastery)
+	%MiningMasteryLevel.text = str(miningmastery)
 
+func _chopping_mastery() -> void:
+	%ChoppingMasteryProgressbar.max_value = (%ChoppingMasteryProgressbar.max_value + 10 ) * 1.1
+	choppingmastery += 1
+	choppingmasteryexp = 0
+
+func _mining_mastery() -> void:
+	%MiningMasteryProgress.max_value = (%MiningMasterProgress.max_value + 10 ) * 1.1
+	miningmastery += 1
+	miningmasteryexp = 0
 #Allow for the popup in crafting to connect the progress bar to the
 #timer that is currently needed
 func _popup_progress_bar_time() -> void:
@@ -114,20 +137,20 @@ func _popup_progress_bar_time() -> void:
 	
 func _user_level_crafting() -> void:
 	#Sets the level you need to be to craft a item
-	if userlevel < 5:
-		%StickCraftButton.text = "Require Level 5"
+	if choppingmastery < 1:
+		%StickCraftButton.text = "Require Chopping Mastery 1"
 		%StickCraftButton.disabled = true
 	else:
 		%StickCraftButton.disabled = false
 		%StickCraftButton.text = "Wooden Sticks"
-	if userlevel < 6:
-		%WoodenAxeCraftButton.text = "Require Level 6"
+	if choppingmastery < 2:
+		%WoodenAxeCraftButton.text = "Require Chopping Mastery 2"
 		%WoodenAxeCraftButton.disabled = true
 	else:
 		%WoodenAxeCraftButton.disabled = false
 		%WoodenAxeCraftButton.text = "Wooden Axe"
-	if userlevel < 8:
-		%WoodenPickCraftButton.text = "Require Level 8"
+	if choppingmastery < 4:
+		%WoodenPickCraftButton.text = "Require Chopping Mastery 4"
 		%WoodenPickCraftButton.disabled = true
 	else:
 		%WoodenPickCraftButton.disabled = false
@@ -138,6 +161,7 @@ func _tool_buffs() -> void:
 	if GlobalSignals.wooden_axe_data.item_amount == 1:
 		woodtime = 8
 	if GlobalSignals.wooden_pickaxe_data.item_amount == 1:
+		stonetime = 2
 		%Stone_button.disabled = false
 		if %Stone_timer.is_stopped():
 			%Stone_button.text = "Start Mining"
@@ -166,6 +190,7 @@ func _on_wood_button_pressed() -> void:
 #when the button is pressed adds wood var to inventory
 func _on_wood_collect_resource_button_pressed() -> void:
 	GlobalSignals.wood_item_data.item_amount += wood
+	wood += choppingmasteryexp
 	# Reset local wood to 0 if needed
 	wood = 0
 	# Emit signal to update UI if you want	
@@ -178,7 +203,7 @@ func _on_stone_button_pressed() -> void:
 		%wood_timer.stop()
 		%WoodenStickTimer.stop()
 		%WoodenAxeCraftTimer.stop()
-		%Stone_timer.start(5)
+		%Stone_timer.start(stonetime)
 		%Stone_button.text = "Cancel Mining"
 	else:
 		# Cancel chopping
@@ -190,11 +215,13 @@ func _on_stone_button_pressed() -> void:
 #when the timer ends adds 1 stone to the var
 func _on_Stone_timer_timeout() -> void:
 	stone += 1
+	#miningmasteryexp += 1
 
 
 #when the button is pressed adds stone var to inventory
 func _on_stone_collect_resource_button_pressed() -> void:
 	GlobalSignals.stone_item_data.item_amount += stone
+	miningmasteryexp += stone
 	# Reset local stone to 0 if needed
 	stone = 0
 	# Emit signal to update 
@@ -203,6 +230,7 @@ func _on_stone_collect_resource_button_pressed() -> void:
 #when the timer ends adds 1 wood to the var
 func _on_wood_timer_timeout() -> void:
 	wood += 1
+	#choppingmasteryexp += 1
 
 #When user level progress bar reached max, calculates the next levels exp
 func Level() -> void:
@@ -229,7 +257,7 @@ func _on_stick_craft_button_pressed() -> void:
 	%CraftPopNameLabel.text = "Wooden Stick"
 	%CraftPopItemImage.texture = load("res://Sprites/download (3).jpeg")
 	%CraftPopAmountNeedLabel.text = "Required:
-	Wood = 4"
+	Wood = 2"
 	%CraftPopCurrentAmount.text = "Owned:\n" \
 		+ "Wood = " + str(GlobalSignals.wood_item_data.item_amount)
 	%CurrentOwnedLabel.text = "Owned:\n" \
@@ -281,8 +309,8 @@ func _update_current_amount() -> void:
 
 #When the timer goes off it will do the crafting process
 func _on_wooden_stick_timer_timeout() -> void:
-	if GlobalSignals.wood_item_data.item_amount >= 4:
-		GlobalSignals.wood_item_data.item_amount -= 4
+	if GlobalSignals.wood_item_data.item_amount >= 2:
+		GlobalSignals.wood_item_data.item_amount -= 2
 		GlobalSignals.wooden_sticks_data.item_amount += 1
 		GlobalSignals.emit_signal("UpdateInventory")
 		_update_current_amount()
